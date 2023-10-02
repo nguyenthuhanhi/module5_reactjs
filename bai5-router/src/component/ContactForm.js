@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {toast, ToastContainer} from "react-toastify";
-import {RotatingLines} from "react-loader-spinner";
+import {TailSpin} from "react-loader-spinner";
 import 'react-toastify/dist/ReactToastify.css';
 
 export function ContactForm(){
@@ -68,11 +68,14 @@ export function ContactForm(){
                                 <ErrorMessage name='message' component='span' className='text-danger'/>
                             </div>
                             {   isSubmitting ?
-                                <RotatingLines
-                                    strokeColor="grey"
-                                    strokeWidth="5"
-                                    animationDuration="0.75"
-                                    width="96"
+                                <TailSpin
+                                    height="40"
+                                    width="40"
+                                    color="#4fa94d"
+                                    ariaLabel="tail-spin-loading"
+                                    radius="1"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
                                     visible={true}
                                 />
                                 :

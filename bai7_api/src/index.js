@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {ContactForm} from "./component/ContactForm";
-import {MedicalDeclaration} from "./component/MedicalDeclaration";
+import {Todo} from "./components/todo";
+import {ListBooks} from "./components/app-manage-books/listBooks";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/*<App />*/}
-    {/*  <ContactForm/>*/}
-      <MedicalDeclaration/>
+    {/*  <Todo/>*/}
+      <ListBooks/>
   </React.StrictMode>
 );
 
