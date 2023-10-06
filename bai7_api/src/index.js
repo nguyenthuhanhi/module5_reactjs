@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Todo} from "./components/todo";
 import {ListBooks} from "./components/app-manage-books/listBooks";
+import {CreateBooks} from "./components/app-manage-books/createBooks";
+import {BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    {/*<App />*/}
-    {/*  <Todo/>*/}
-      <ListBooks/>
-  </React.StrictMode>
+<BrowserRouter>
+        <App />
+        {/*  <Todo/>*/}
+        {/*<ListBooks/>*/}
+        {/*<CreateBooks/>*/}
+</BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import {Formik} from "formik";
-import axios from "axios";
 import * as BooksService from "../../service/BooksService";
 import './listBooks.css'
+import {NavLink} from "react-router-dom";
+import {toast, ToastContainer} from "react-toastify";
 
 
 export function ListBooks() {
@@ -10,14 +10,19 @@ export function ListBooks() {
 
     useEffect(()=> {
         fetchApi();
-    },[])
+    },[books])
     const fetchApi = async () => {
       const result = await BooksService.findAll()
         setBooks(result);
     }
+
+    const handleDelete = async (id) => {
+        await BooksService.deleteBook(id);
+        toast("đã xóa thành công")
+    }
     return(
         <>
-            <h1>Library  <span><button type="button" className="btn btn-success" >Create</button> </span></h1>
+            <h1>Library  <span><NavLink to='/create' type="button" className="btn btn-success" >Create</NavLink> </span></h1>
             <table className="table table-hover">
                 <thead>
                 <tr>
@@ -33,24 +38,15 @@ export function ListBooks() {
                             <td>{book.title}</td>
                             <td>{book.quantity}</td>
                             <td>
-                                <button type="button" className="btn btn-primary">Update</button> &nbsp;
-                                <button type="button" className="btn btn-danger">Delete</button>
+                                <NavLink to={`/update/${book.id}`} type="button" className="btn btn-success" >Update</NavLink> &nbsp;
+                                <button type="button" className="btn btn-danger" onClick={()=> handleDelete(book.id)}>Delete</button>
                             </td>
                         </tr>
                     ))
                 }
                 </tbody>
             </table>
-
-            {/*<Formik initialValues={{*/}
-            {/*    id: "",*/}
-            {/*    title: "",*/}
-            {/*    quantity:""*/}
-            {/*}} onSubmit={values => {*/}
-            {/*    console.log(values);*/}
-            {/*    }*/}
-            {/*}*/}
-            {/*></Formik>*/}
+            <ToastContainer />
         </>
     )
 }

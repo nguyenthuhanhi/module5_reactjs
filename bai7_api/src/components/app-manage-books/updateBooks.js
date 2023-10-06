@@ -1,19 +1,34 @@
 import * as Yup from 'yup'
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import {TailSpin} from "react-loader-spinner";
 import 'react-toastify/dist/ReactToastify.css';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import * as booksService from "../../service/BooksService"
+import {useEffect, useState} from "react";
 
-export function CreateBooks(){
-    const navigate = useNavigate();
-    return(
+export function UpdateBooks(){
+    const navigate= useNavigate();
+    const {id} = useParams();
+    const [book, setBook] = useState({
+        id:'',
+        title:'',
+        quantity:''
+    });
+    useEffect(()=>{
+        findById();
+    })
+
+    const findById = async () => {
+        const result = await booksService.findByIdBook(id);
+        setBook(result);
+    }
+    return book.title!==''? (
         <>
             <Formik initialValues={
                 {
-                    title:"",
-                    quantity:""
+                    title:book.title,
+                    quantity:book.quantity
                 }
             }
                     validationSchema={Yup.object({
@@ -26,26 +41,21 @@ export function CreateBooks(){
                                 'sai định dạng')
                     })}
                     onSubmit={(values,{setSubmitting})=> {
-                        // setTimeout(()=>{
-                        //     console.log(value);
-                        //     //call API
-                        //     setSubmitting(false)
-                        //     toast("đã submit thành công")
-                        // },1000)
-                        const create = async () => {
+                        const update = async () => {
                             setSubmitting(false)
-                            await booksService.save(values)
-                            toast("đã submit thành công")
+                            // eslint-disable-next-line no-undef
+                            await booksService.updateBook(id, values)
+                            toast("đã update thành công")
                             navigate("/")
                         }
-                        create();
+                        update();
                     }
-            }
+                    }
 
             >
                 { ({isSubmitting}) => (
                     <div className='container'>
-                        <h1>Create Book</h1>
+                        <h1>Update Book</h1>
                         <Form>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputTitle" className="form-label">Title</label>
@@ -76,12 +86,8 @@ export function CreateBooks(){
                         </Form>
                     </div>
                 )
-
                 }
             </Formik>
-
         </>
-
-
-    );
+    ):""
 }

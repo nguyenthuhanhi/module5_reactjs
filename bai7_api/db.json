@@ -33,21 +33,16 @@
       "title": "hello12345ttttt"
     }
   ],
-  "books" : [
+  "books": [
     {
       "id": 1,
       "title": "Xuan da ve",
       "quantity": 2
     },
     {
-      "id": 2,
-      "title": "Dong am",
-      "quantity": 1
-    },
-    {
-      "id": 3,
-      "title": "Xe sang",
-      "quantity": 2
+      "title": "hjbhj",
+      "quantity": "8",
+      "id": 2
     }
   ]
 }
