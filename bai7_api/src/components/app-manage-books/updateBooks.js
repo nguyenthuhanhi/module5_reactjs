@@ -69,20 +69,7 @@ export function UpdateBooks(){
                                        name='quantity'/>
                                 <ErrorMessage name='quantity' component='span' className='text-danger'/>
                             </div>
-                            {   isSubmitting ?
-                                <TailSpin
-                                    height="40"
-                                    width="40"
-                                    color="#4fa94d"
-                                    ariaLabel="tail-spin-loading"
-                                    radius="1"
-                                    wrapperStyle={{}}
-                                    wrapperClass=""
-                                    visible={true}
-                                />
-                                :
-                                <button type="submit" className="btn btn-primary" disabled={false}>Submit</button>
-                            }
+                            <button type="submit" className="btn btn-primary" disabled={false}>Submit</button>
                         </Form>
                     </div>
                 )

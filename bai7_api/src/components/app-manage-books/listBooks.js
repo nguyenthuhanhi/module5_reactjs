@@ -28,6 +28,8 @@ export function ListBooks() {
                 <tr>
                     <th scope="col">Title</th>
                     <th scope="col">Quantity</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">State</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -37,6 +39,8 @@ export function ListBooks() {
                         <tr>
                             <td>{book.title}</td>
                             <td>{book.quantity}</td>
+                            <td>{book.category}</td>
+                            <td>{book.state}</td>
                             <td>
                                 <NavLink to={`/update/${book.id}`} type="button" className="btn btn-success" >Update</NavLink> &nbsp;
                                 <button type="button" className="btn btn-danger" onClick={()=> handleDelete(book.id)}>Delete</button>

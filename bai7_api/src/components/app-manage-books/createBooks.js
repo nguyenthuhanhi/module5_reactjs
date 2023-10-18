@@ -13,7 +13,9 @@ export function CreateBooks(){
             <Formik initialValues={
                 {
                     title:"",
-                    quantity:""
+                    quantity:"",
+                    category:"",
+                    state:""
                 }
             }
                     validationSchema={Yup.object({
@@ -23,15 +25,13 @@ export function CreateBooks(){
                             .required('bắt buộc nhập')
                             .min(1)
                             .matches( /^[1-9]\d*$/,
-                                'sai định dạng')
+                                'sai định dạng'),
+                        category: Yup.string()
+                            .required('bắt buộc chọn'),
+                        state: Yup.string()
+                            .required('bắt buộc chọn')
                     })}
                     onSubmit={(values,{setSubmitting})=> {
-                        // setTimeout(()=>{
-                        //     console.log(value);
-                        //     //call API
-                        //     setSubmitting(false)
-                        //     toast("đã submit thành công")
-                        // },1000)
                         const create = async () => {
                             setSubmitting(false)
                             await booksService.save(values)
@@ -59,20 +59,36 @@ export function CreateBooks(){
                                        name='quantity'/>
                                 <ErrorMessage name='quantity' component='span' className='text-danger'/>
                             </div>
-                            {   isSubmitting ?
-                                <TailSpin
-                                    height="40"
-                                    width="40"
-                                    color="#4fa94d"
-                                    ariaLabel="tail-spin-loading"
-                                    radius="1"
-                                    wrapperStyle={{}}
-                                    wrapperClass=""
-                                    visible={true}
-                                />
-                                :
-                                <button type="submit" className="btn btn-primary" disabled={false}>Submit</button>
-                            }
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputCategory" className="form-label">Category</label>
+                                <Field as="select" className="form-select form-select-sm" aria-label="Small select example" name='category'>
+                                    <option selected>Chọn thể loại</option>
+                                    <option value="Tâm lý">Tâm lý</option>
+                                    <option value="Kỹ năng sống">Kỹ năng sống</option>
+                                    <option value="Tội phạm">Tội phạm</option>
+                                </Field >
+                                <ErrorMessage name='category' component='span' className='text-danger'/>
+                            </div>
+                            <div>
+                                <label htmlFor="exampleInputCategory" className="form-label">State</label>
+                                <div className="form-check">
+                                    <Field type="radio" className="form-check-input" name="state" value="đã bán"
+                                           id="flexRadioDefault1" />
+                                        <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                            Đã bán
+                                        </label>
+                                </div>
+                                <div className="form-check">
+                                    <Field type="radio" className="form-check-input" name="state" value="chưa bán"
+                                           id="flexRadioDefault2"/>
+                                        <label className="form-check-label" htmlFor="flexRadioDefault2" >
+                                            Chưa bán
+                                        </label>
+                                </div>
+                                <ErrorMessage name='state' component='span' className='text-danger'/>
+                            </div>
+
+                            <button type="submit" className="btn btn-primary" disabled={false}>Submit</button>
                         </Form>
                     </div>
                 )

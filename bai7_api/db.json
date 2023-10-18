@@ -35,14 +35,32 @@
   ],
   "books": [
     {
-      "id": 1,
-      "title": "Xuan da ve",
-      "quantity": 2
+      "title": "Phi lý trí",
+      "quantity": "5",
+      "category": "Tâm lý",
+      "state": "đã bán",
+      "id": 1
     },
     {
-      "title": "hjbhj",
-      "quantity": "8",
+      "title": "Im lặng",
+      "quantity": "4",
+      "category": "Tâm lý",
+      "state": "đã bán",
       "id": 2
+    },
+    {
+      "title": "Hiểu về trái tim",
+      "quantity": "2",
+      "category": "Kỹ năng sống",
+      "state": "chưa bán",
+      "id": 3
+    },
+    {
+      "title": "Dám nghĩ lại",
+      "quantity": "3",
+      "category": "Kỹ năng sống",
+      "state": "chưa bán",
+      "id": 4
     }
   ]
 }
